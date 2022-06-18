@@ -3,6 +3,7 @@ package com.mufid.kost.kost.repository
 import com.mongodb.client.MongoCollection
 import com.mufid.kost.database.DatabaseComponent
 import com.mufid.kost.kost.entity.Kost
+import org.bson.types.ObjectId
 import org.litote.kmongo.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
@@ -21,12 +22,12 @@ class KostRepositoryImpl: KostRepository {
         return kostCollection().find().toList()
     }
 
-    override fun getById(id: Int?): Kost? {
-        return kostCollection().findOne(Kost::id eq id)
+    override fun getById(id: String?): Kost? {
+        return kostCollection().findOneById(ObjectId(id))
     }
 
     override fun search(name: String): List<Kost> {
-        return kostCollection().find(Kost::name regex "*.$name.*").toList()
+        return kostCollection().find(Kost::name regex ".*$name.*").toList()
     }
 
     override fun add(kost: Kost): List<Kost> {
@@ -39,18 +40,17 @@ class KostRepositoryImpl: KostRepository {
         }
     }
 
-    override fun update(kost: Kost): Kost? {
-        val update = kostCollection().updateOneById(kost.id ?: 0, kost)
-
+    override fun update(idString: String?, kost: Kost): Kost? {
+        val update = kostCollection().updateOneById(ObjectId(idString), kost)
         return if (update.wasAcknowledged()) {
-            getById(kost.id)
+            getById(idString)
         } else {
             throw IllegalStateException("Failed Update")
         }
     }
 
-    override fun delete(id: Int): Kost? {
-        val delete = kostCollection().deleteOne(Kost::id eq id)
+    override fun delete(id: String?): Kost? {
+        val delete = kostCollection().deleteOneById(ObjectId(id))
 
         return if (delete.wasAcknowledged()) {
             return null
