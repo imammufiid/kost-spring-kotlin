@@ -3,7 +3,7 @@
 ## Base url
 
 ```
-https://marketplace-min-api.herokuapp.com/v1
+https://kost-mufid-api.herokuapp.com/v1
 ```
 
 ## Table endpoints
@@ -11,7 +11,7 @@ https://marketplace-min-api.herokuapp.com/v1
 
 | Name                       | Endpoint                                                    | Method   |
 | -------------------------- | ----------------------------------------------------------- | -------- |
-| List Kost                  | `/v1/kost/`                                                 | `GET`    |
-| Add Kost                   | `/v1/kost/`                                                 | `POST`   |
-| Update kost                | `/v1/kost/{id}`                                             | `PUT`    |
-| Delete Kost                | `/v1/kost/{id}`                                             | `DELETE` |
+| List Kost                  | `/kost/`                                                 | `GET`    |
+| Add Kost                   | `/kost/`                                                 | `POST`   |
+| Update kost                | `/kost/{id}`                                             | `PUT`    |
+| Delete Kost                | `/kost/{id}`                                             | `DELETE` |
