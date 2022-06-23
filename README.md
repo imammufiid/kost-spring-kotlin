@@ -7,7 +7,7 @@ https://kost-mufid-api.herokuapp.com/v1
 ```
 
 ## Table endpoints
-### Customer
+### Kost
 
 | Name                       | Endpoint                                                    | Method   |
 | -------------------------- | ----------------------------------------------------------- | -------- |
